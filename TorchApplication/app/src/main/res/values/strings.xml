@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TorchApplication</string>
+    <string name="tv1">Torch Application</string>
+    <string name="btn1">Time Of Day Torch</string>
+    <string name="btn2">Light Sensor Torch</string>
+    <string name="sensorLevels">Sensor Reading</string>
+    <string name="turnoff">Turn Off Light At:</string>
+    <string name="turnon">Turn On Light At:</string>
+    <string name="rb1">Light Sensor</string>
+    <string name="rb2">Time of day</string>
+
+
+</resources>
