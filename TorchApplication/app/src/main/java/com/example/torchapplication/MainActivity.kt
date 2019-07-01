@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         setContentView(R.layout.activity_main)
 
 
-// Permissions code (not working)
+// Permissions code
 
         if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)
         {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onStart() {
         super.onStart()
 
-// Permissions code (not working)
+// Permissions code
 
         if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)
         {
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
 
-// Permissions (not working)
+// Permissions 
 
     override fun onRequestPermissionsResult(requestCode:Int, permissions:Array<String>, grantResults: IntArray) {
         when(requestCode) {
