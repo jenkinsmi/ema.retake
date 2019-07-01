@@ -10,6 +10,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.editactivity.*
 
+// Second activity to edit sensor value upper and lower boundaries
+
 class editActivity : AppCompatActivity(), SensorEventListener {
 
 
@@ -30,6 +32,7 @@ class editActivity : AppCompatActivity(), SensorEventListener {
             query = SQLH(this)
 
 
+// Setting upper and lower boundaries
 
             etLoff.setText(query!!.OnSettings().toString())
             etLon.setText(query!!.OffSettings().toString())

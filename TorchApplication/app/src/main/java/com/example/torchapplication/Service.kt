@@ -14,6 +14,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
+// Service to run app features in background
+
 class Service : Service(), SensorEventListener{
 
     lateinit var lightSensor : Sensor
@@ -51,8 +53,6 @@ class Service : Service(), SensorEventListener{
         {
 //            if(rbLS.isChecked) {
 
-
-
                 if (p0?.values[0] < query!!.OnSettings()) {
                     Log.d("LIGHT ON", "Reading is" + p0.values[0].toString())
                     light(true)
@@ -70,12 +70,7 @@ class Service : Service(), SensorEventListener{
                 }
 //            }
 
-
-
-
         }
-
-
     }
 
     override fun onDestroy() {

@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.editactivity.*
 import kotlinx.android.synthetic.main.editactivity.etLoff
 import org.jetbrains.anko.toast
 
-
+// Main activity
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
     lateinit var lightSensor: Sensor
@@ -29,11 +29,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         setContentView(R.layout.activity_main)
 
 
+// Permissions code (not working)
+
+        if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)
+        {
+            val startIntent = Intent(this, Service::class.java)
+            startService(startIntent)
+
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), 0)
+        }
 
 
 
-
-
+// Setting up light sensor
 
         val sMgr = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         lightSensor = sMgr.getDefaultSensor(Sensor.TYPE_LIGHT)
@@ -44,15 +53,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         camMgr = getSystemService(Context.CAMERA_SERVICE) as CameraManager
         camID = camMgr.getCameraIdList()[0]
 
+// Set upper and lower boundaries to value
 
         etLoff.setText(query!!.OnSettings().toString())
         etLon.setText(query!!.OffSettings().toString())
 
 
-
-
-
-
+ // Floating action button to send user to editActivity
 
         fab.setOnClickListener {
 
@@ -61,23 +68,26 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
         }
-//////goto new activity
-
 
     }
 
     override fun onStart() {
         super.onStart()
 
-        if(checkSelfPermission(Manifest.permission.FLASHLIGHT)== PackageManager.PERMISSION_GRANTED)
+// Permissions code (not working)
+
+        if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)
         {
             val startIntent = Intent(this, Service::class.java)
             startService(startIntent)
 
         } else {
-            requestPermissions(arrayOf(Manifest.permission.FLASHLIGHT), 0)
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), 0)
         }
     }
+
+
+// Update light sensor reading value on sensor changed
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
 
@@ -99,13 +109,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
 
-
+// Permissions (not working)
 
     override fun onRequestPermissionsResult(requestCode:Int, permissions:Array<String>, grantResults: IntArray) {
         when(requestCode) {
             0 -> {
                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                    toast("Torch Perm allowed")
+                    val startIntent = Intent(this, Service::class.java)
+                    startService(startIntent)
 
                 } else {
                     toast("Torch Perm denied")

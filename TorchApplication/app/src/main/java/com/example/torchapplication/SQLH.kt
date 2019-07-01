@@ -4,8 +4,11 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteDatabase
 import android.content.Context
 
+// SQLite database.
+
 class SQLH(ctx:Context) : SQLiteOpenHelper(ctx,"Settings", null, 1) {
 
+// Create table on device.
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -17,6 +20,7 @@ class SQLH(ctx:Context) : SQLiteOpenHelper(ctx,"Settings", null, 1) {
         onCreate(db)
     }
 
+// Insert record to SQLite database.
 
     fun insertRecord(lightON : Long, lightOFF : Long) : Long{
         delete()
@@ -29,6 +33,8 @@ class SQLH(ctx:Context) : SQLiteOpenHelper(ctx,"Settings", null, 1) {
         return id
     }
 
+// Delete record from SQLite database.
+
     fun delete(){
         val db = getWritableDatabase()
         val stmt = db.compileStatement  ("DELETE FROM LuxSettings WHERE ID=?");
@@ -36,6 +42,8 @@ class SQLH(ctx:Context) : SQLiteOpenHelper(ctx,"Settings", null, 1) {
         val n = stmt.executeUpdateDelete()
 
     }
+
+// Find upper values for turning on torch.
 
     fun OnSettings() : Long {
         val db = getReadableDatabase()
@@ -49,6 +57,7 @@ class SQLH(ctx:Context) : SQLiteOpenHelper(ctx,"Settings", null, 1) {
         return 1
     }
 
+// Find lower values for turning off torch.
 
     fun OffSettings() : Long {
         val db = getReadableDatabase()
