@@ -101,19 +101,3 @@ class Service : Service(), SensorEventListener{
 
 
 
-//if(rbLS.isChecked) {
-//
-//                if (p0?.values[0] < query!!.OnSettings() && p0?.values[0] < query!!.OffSettings()  ) {
-//                    Log.d("LIGHT ON", "Reading is" + p0.values[0].toString())
-//                    light(true)
-//                    L = true
-//
-//                } else if (p0?.values[0] > query!!.OffSettings()) {
-//                    Log.d("LIGHT OFF", "Reading is" + p0.values[0].toString())
-//                    light(false)
-//                    L= false
-//                } else {
-//                    Log.d("else", "Reading is" + p0.values[0].toString())
-//
-//                }
-////            }

@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
 
-// Permissions
+// Permissions callback
 
     override fun onRequestPermissionsResult(requestCode:Int, permissions:Array<String>, grantResults: IntArray) {
         when(requestCode) {
