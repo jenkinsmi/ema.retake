@@ -18,12 +18,15 @@ import org.jetbrains.anko.toast
 
 class Service : Service(), SensorEventListener{
 
+
+    var L : Boolean = false
+
+
     lateinit var lightSensor : Sensor
     lateinit var camMgr: CameraManager
     lateinit var camID: String
 
     var query : SQLH? = null
-
     //lateinit var locMgr:LocationManager
 
     var onVal : Float = 10f
@@ -36,12 +39,16 @@ class Service : Service(), SensorEventListener{
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
+
+
         query = SQLH(this)
         val sMgr = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         lightSensor = sMgr.getDefaultSensor(Sensor.TYPE_LIGHT)
         sMgr.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_UI)
         camMgr = getSystemService(Context.CAMERA_SERVICE) as CameraManager
         camID = camMgr.getCameraIdList()[0]
+
+        light(false)
         return START_NOT_STICKY
     }
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
@@ -51,24 +58,27 @@ class Service : Service(), SensorEventListener{
 
         if(p0?.sensor == lightSensor)
         {
-//            if(rbLS.isChecked) {
-
-                if (p0?.values[0] < query!!.OnSettings()) {
+////
+            if(!L)
+            {
+                if (p0?.values[0] <= query!!.OnSettings() ) {
                     Log.d("LIGHT ON", "Reading is" + p0.values[0].toString())
                     light(true)
-                    // put this code into the main activity, remove light(true) stuff, and then have a toast, and the edit et1 stuff.
-
-                    //var editText1 = p0?.values[0]
-                    //et1.setText(editText1)
-                    // idkkkkk
-                } else if (p0?.values[0] > query!!.OffSettings()) {
+                    L = true
+                }
+            }
+            else if(L)
+            {
+                if (p0?.values[0] >= query!!.OffSettings()) {
                     Log.d("LIGHT OFF", "Reading is" + p0.values[0].toString())
                     light(false)
-                } else {
-                    Log.d("else", "Reading is" + p0.values[0].toString())
-
+                    L = false
                 }
-//            }
+            }
+            else
+            {
+                //error
+            }
 
         }
     }
@@ -83,3 +93,27 @@ class Service : Service(), SensorEventListener{
         camMgr.setTorchMode(camID, v)
     }
 }
+
+
+
+
+
+
+
+
+//if(rbLS.isChecked) {
+//
+//                if (p0?.values[0] < query!!.OnSettings() && p0?.values[0] < query!!.OffSettings()  ) {
+//                    Log.d("LIGHT ON", "Reading is" + p0.values[0].toString())
+//                    light(true)
+//                    L = true
+//
+//                } else if (p0?.values[0] > query!!.OffSettings()) {
+//                    Log.d("LIGHT OFF", "Reading is" + p0.values[0].toString())
+//                    light(false)
+//                    L= false
+//                } else {
+//                    Log.d("else", "Reading is" + p0.values[0].toString())
+//
+//                }
+////            }

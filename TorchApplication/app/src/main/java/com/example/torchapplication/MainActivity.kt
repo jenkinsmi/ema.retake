@@ -55,8 +55,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 // Set upper and lower boundaries to value
 
-        etLoff.setText(query!!.OnSettings().toString())
-        etLon.setText(query!!.OffSettings().toString())
+        etLoff.setText(query!!.OffSettings().toString())
+        etLon.setText(query!!.OnSettings().toString())
 
 
  // Floating action button to send user to editActivity
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
     }
-    
+
 
 // Permissions
 

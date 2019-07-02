@@ -31,16 +31,15 @@ class editActivity : AppCompatActivity(), SensorEventListener {
 
             query = SQLH(this)
 
-
 // Setting upper and lower boundaries
 
-            etLoff.setText(query!!.OnSettings().toString())
-            etLon.setText(query!!.OffSettings().toString())
+            etLoff.setText(query!!.OffSettings().toString())
+            etLon.setText(query!!.OnSettings().toString())
 
 
             btnUpdate.setOnClickListener {
 
-                query!!.insertRecord(etLoff.text.toString().toLong(), etLon.text.toString().toLong())
+                query!!.insertRecord(etLon.text.toString().toLong(), etLoff.text.toString().toLong())
 
                 val ActivityIntent = Intent(this, MainActivity::class.java)
                 startActivity(ActivityIntent)
@@ -53,17 +52,6 @@ class editActivity : AppCompatActivity(), SensorEventListener {
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
 

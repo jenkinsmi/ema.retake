@@ -8,6 +8,7 @@
     <string name="turnon">Turn On Light At:</string>
     <string name="rb1">Light Sensor</string>
     <string name="rb2">Time of day</string>
+    <string name="edit">Edit:</string>
 
 
 </resources>

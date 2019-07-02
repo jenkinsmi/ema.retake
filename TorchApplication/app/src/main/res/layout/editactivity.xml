@@ -14,7 +14,7 @@
             android:id="@+id/tv2" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="264dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="156dp"/>
-    <EditText
+    <TextView
             android:layout_width="86dp"
             android:layout_height="42dp"
             android:inputType="number"
